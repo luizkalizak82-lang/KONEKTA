@@ -1,119 +1,54 @@
-:root {
-    --bg-color: #0f0f0f;
-    --card-bg: rgba(255, 255, 255, 0.05);
-    --accent-color: #c0c0c0; /* Prata metálico */
-    --text-color: #e0e0e0;
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
-
-body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-/* Navbar */
-#navbar {
-    display: flex;
-    justify-content: space-between;
-    padding: 2rem 10%;
-    align-items: center;
+/* Botão Flutuante do WhatsApp */
+.whatsapp-float {
     position: fixed;
-    width: 100%;
-    z-index: 1000;
-    transition: 0.3s;
-}
-
-.logo {
-    font-size: 1.5rem;
-    font-weight: 700;
-    letter-spacing: 4px;
-    background: linear-gradient(145deg, #ffffff, #777);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-}
-
-#navbar ul { display: flex; list-style: none; }
-#navbar ul li { margin-left: 2rem; }
-#navbar ul li a { text-decoration: none; color: var(--text-color); font-size: 0.9rem; }
-
-/* Hero Section */
-.hero {
-    height: 100vh;
+    width: 60px;
+    height: 60px;
+    bottom: 40px;
+    right: 40px;
+    background-color: rgba(20, 20, 21, 0.85);
+    color: #e2e4e9;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
-    text-align: center;
-    background: radial-gradient(circle at center, #1a1a1a 0%, #0f0f0f 100%);
-}
-
-.hero h1 {
-    font-size: 5rem;
-    letter-spacing: 15px;
-    margin-bottom: 1rem;
-    text-shadow: 0 0 20px rgba(255,255,255,0.1);
-}
-
-.subtitle {
-    font-weight: 300;
-    color: #888;
-    margin-bottom: 2rem;
-}
-
-.cta-button {
-    padding: 1rem 2.5rem;
-    border: 1px solid var(--accent-color);
-    color: var(--accent-color);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     text-decoration: none;
-    transition: 0.4s;
-    text-transform: uppercase;
-    font-size: 0.8rem;
-    letter-spacing: 2px;
 }
 
-.cta-button:hover {
-    background: var(--accent-color);
-    color: #000;
-    box-shadow: 0 0 20px rgba(192, 192, 192, 0.4);
+.whatsapp-icon {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.4s ease;
 }
 
-/* Cards Section */
-.services {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-    padding: 5rem 10%;
+/* Efeito Hover combinando com a identidade visual da marca */
+.whatsapp-float:hover {
+    background-color: #25d366;
+    color: #fff;
+    border-color: #25d366;
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
 }
 
-.card {
-    background: var(--card-bg);
-    padding: 3rem 2rem;
-    border: 1px solid rgba(255,255,255,0.1);
-    border-radius: 4px;
-    transition: 0.3s;
-    backdrop-filter: blur(10px);
+.whatsapp-float:hover .whatsapp-icon {
+    transform: rotate(10deg);
 }
 
-.card:hover {
-    transform: translateY(-10px);
-    border-color: var(--accent-color);
-}
-
-/* Animação de Surgimento */
-.reveal {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.8s ease-out;
-}
-
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
+/* Ajuste para telas menores */
+@media (max-width: 768px) {
+    .whatsapp-float {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+    .whatsapp-icon {
+        width: 24px;
+        height: 24px;
+    }
 }
