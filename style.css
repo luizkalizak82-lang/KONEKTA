@@ -1,54 +1,200 @@
-/* Botão Flutuante do WhatsApp */
-.whatsapp-float {
+:root {
+    --bg-color: #0b0b0c;
+    --bg-gradient: radial-gradient(circle at 50% 30%, #1c1d1f 0%, #080809 100%);
+    --card-bg: rgba(255, 255, 255, 0.02);
+    --card-border: rgba(255, 255, 255, 0.07);
+    --text-primary: #e2e4e9;
+    --text-secondary: #9499a6;
+    --metal-light: #ffffff;
+    --metal-dark: #5e626e;
+    --accent-glow: rgba(255, 255, 255, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    background-image: var(--bg-gradient);
+    color: var(--text-primary);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+/* Navbar */
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    padding: 2rem 8%;
+    align-items: center;
     position: fixed;
-    width: 60px;
-    height: 60px;
-    bottom: 40px;
-    right: 40px;
-    background-color: rgba(20, 20, 21, 0.85);
-    color: #e2e4e9;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 50%;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.4s ease;
+    background: transparent;
+}
+
+#navbar.scrolled {
+    background: rgba(11, 11, 12, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 1.2rem 8%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.logo-text {
+    font-size: 1.4rem;
+    font-weight: 700;
+    letter-spacing: 5px;
+    background: linear-gradient(135deg, var(--metal-light) 0%, var(--metal-dark) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+#navbar ul { display: flex; list-style: none; align-items: center; }
+#navbar ul li { margin-left: 2.5rem; }
+#navbar ul li a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.3s; }
+#navbar ul li a:hover { color: var(--text-primary); }
+
+#navbar ul li a.btn-contato {
+    padding: 0.6rem 1.2rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 2px;
+}
+#navbar ul li a.btn-contato:hover { background: var(--text-primary); color: #000; }
+
+/* Hero Section */
+.hero {
+    height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-    z-index: 2000;
-    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
+    text-align: center;
+    padding: 0 20px;
+}
+
+.hero-content { max-width: 800px; }
+.logo-symbol-container { margin-bottom: 1.5rem; }
+.logo-symbol { animation: floatAnimation 6s ease-in-out infinite; }
+
+@keyframes floatAnimation {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-8px); }
+    100% { transform: translateY(0px); }
+}
+
+.hero h1 {
+    font-size: 4.5rem;
+    font-weight: 700;
+    letter-spacing: 18px;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, #a3a6b0 50%, #3a3b40 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle { font-size: 1.15rem; font-weight: 300; color: var(--text-secondary); margin-bottom: 3.5rem; letter-spacing: 2px;}
+
+.cta-button {
+    display: inline-block;
+    padding: 1.1rem 2.8rem;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--text-primary);
     text-decoration: none;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    transition: all 0.4s ease;
 }
+.cta-button:hover { color: #0b0b0c; background: var(--text-primary); }
 
-.whatsapp-icon {
-    width: 30px;
-    height: 30px;
-    transition: transform 0.4s ease;
+/* Seção Quem Somos (Novos estilos expandidos) */
+.about-section { padding: 8rem 10%; text-align: center; }
+.about-section h2, .live-counter-section h2, .faq-section h2 { font-size: 2rem; letter-spacing: 4px; text-transform: uppercase; margin-bottom: 2rem; }
+.about-text { max-width: 700px; margin: 0 auto 4rem auto; color: var(--text-secondary); font-size: 1.1rem; font-weight: 300; }
+.about-pillars { display: flex; justify-content: center; gap: 3rem; max-width: 900px; margin: 0 auto; }
+.pillar { flex: 1; background: var(--card-bg); border: 1px solid var(--card-border); padding: 2.5rem; text-align: left; border-radius: 4px; }
+.pillar h4 { margin-bottom: 1rem; font-size: 1.1rem; letter-spacing: 1px; }
+.pillar p { color: var(--text-secondary); font-size: 0.95rem; }
+
+/* Box do Contador ao Vivo (NOVO) */
+.live-counter-section { padding: 6rem 10%; display: flex; justify-content: center; }
+.counter-box {
+    background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(255,255,255,0.01) 100%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 3.5rem 2.5rem;
+    border-radius: 8px;
+    text-align: center;
+    max-width: 550px;
+    width: 100%;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+    backdrop-filter: blur(10px);
 }
+.live-indicator { display: flex; align-items: center; justify-content: center; gap: 10px; margin-bottom: 1.5rem; }
 
-/* Efeito Hover combinando com a identidade visual da marca */
-.whatsapp-float:hover {
-    background-color: #25d366;
-    color: #fff;
-    border-color: #25d366;
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: 0 15px 30px rgba(37, 211, 102, 0.3);
+/* Luz Piscando (Pulsing Dot) */
+.pulsing-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #00ff66;
+    border-radius: 50%;
+    box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7);
+    animation: pulse 1.6s infinite;
 }
-
-.whatsapp-float:hover .whatsapp-icon {
-    transform: rotate(10deg);
+@keyframes pulse {
+    0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.7); }
+    70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 102, 0); }
+    100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 102, 0); }
 }
+.live-text { font-size: 0.8rem; font-weight: 600; letter-spacing: 2px; color: #00ff66; }
+.counter-box h2 { font-size: 4rem; font-weight: 700; margin-bottom: 1rem; letter-spacing: 1px; color: #fff; }
+.counter-box p { color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; }
 
-/* Ajuste para telas menores */
+/* Serviços Section */
+.services { padding: 6rem 8%; }
+.section-title { text-align: center; margin-bottom: 5rem; }
+.section-title h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+.section-title p { color: var(--text-secondary); }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
+.card { background: var(--card-bg); border: 1px solid var(--card-border); padding: 4rem 2.5rem; border-radius: 4px; backdrop-filter: blur(12px); transition: all 0.4s ease; }
+.card:hover { transform: translateY(-8px); border-color: rgba(255, 255, 255, 0.25); background: rgba(255, 255, 255, 0.04); }
+.card-icon { font-size: 2.5rem; margin-bottom: 1.5rem; }
+.card h3 { font-size: 1.3rem; margin-bottom: 1.2rem; letter-spacing: 2px; text-transform: uppercase; }
+.card p { color: var(--text-secondary); font-size: 0.95rem; font-weight: 300; }
+
+/* FAQ Section */
+.faq-section { padding: 6rem 10%; max-width: 800px; margin: 0 auto; }
+.faq-item { background: rgba(255,255,255,0.01); border-bottom: 1px solid rgba(255,255,255,0.05); padding: 2rem 0; text-align: left; }
+.faq-item h4 { font-size: 1.1rem; margin-bottom: 0.8rem; color: var(--text-primary); }
+.faq-item p { color: var(--text-secondary); font-size: 0.95rem; }
+
+/* Contato e Footer */
+.contact-section { padding: 8rem 10%; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
+.contact-section p { color: var(--text-secondary); margin-bottom: 3rem; }
+footer { padding: 3rem 5%; text-align: center; background: #060607; border-top: 1px solid rgba(255,255,255,0.03); }
+footer p { font-size: 0.8rem; color: #525660; }
+
+/* Botão Flutuante do WhatsApp */
+.whatsapp-float { position: fixed; width: 60px; height: 60px; bottom: 40px; right: 40px; background-color: rgba(20, 20, 21, 0.85); color: #e2e4e9; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5); z-index: 2000; transition: all 0.4s ease; backdrop-filter: blur(8px); }
+.whatsapp-icon { width: 30px; height: 30px; }
+.whatsapp-float:hover { background-color: #25d366; color: #fff; border-color: #25d366; transform: translateY(-5px); }
+
+/* Animações de Scroll */
+.reveal { opacity: 0; transform: translateY(30px); transition: all 1s ease; }
+.reveal.active { opacity: 1; transform: translateY(0); }
+
 @media (max-width: 768px) {
-    .whatsapp-float {
-        width: 50px;
-        height: 50px;
-        bottom: 20px;
-        right: 20px;
-    }
-    .whatsapp-icon {
-        width: 24px;
-        height: 24px;
-    }
+    #navbar ul { display: none; }
+    .about-pillars { flex-direction: column; gap: 1.5rem; }
+    .hero h1 { font-size: 3rem; letter-spacing: 8px; }
+    .whatsapp-float { width: 50px; height: 50px; bottom: 20px; right: 20px; }
 }
