@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Konekta | Negócios Digitais</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -15,8 +15,10 @@
         </div>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#sobre">Conceito</a></li>
+            <li><a href="#sobre">Quem Somos</a></li>
+            <li><a href="#contador-section">Dados ao Vivo</a></li>
             <li><a href="#servicos">Serviços</a></li>
+            <li><a href="#faq">FAQ</a></li>
             <li><a href="#contato" class="btn-contato">Fale Conosco</a></li>
         </ul>
     </nav>
@@ -32,18 +34,8 @@
                             <stop offset="70%" stop-color="#4a4a4a" />
                             <stop offset="100%" stop-color="#1a1a1a" />
                         </linearGradient>
-                        <filter id="metallicGlow" x="-20%" y="-20%" width="140%" height="140%">
-                            <feGaussianBlur stdDeviation="2" result="blur" />
-                            <feComponentTransfer in="blur" result="glow1">
-                                <feFuncA type="linear" slope="0.3"/>
-                            </feComponentTransfer>
-                            <feMerge>
-                                <feMergeNode in="glow1" />
-                                <feMergeNode in="SourceGraphic" />
-                            </feMerge>
-                        </filter>
                     </defs>
-                    <g filter="url(#metallicGlow)">
+                    <g>
                         <path d="M38,28 C38,24 43,24 43,28 C43,34 35,40 42,48 C46,52 44,58 40,62 C36,66 38,72 45,72 C41,76 36,70 36,64 C36,54 44,46 38,38 C35,34 38,30 38,28 Z" fill="url(#metalGrad)" />
                         <path d="M42,48 C48,44 58,30 65,26 C62,32 50,45 47,49 C52,53 58,66 65,72 C56,71 48,58 42,48 Z" fill="url(#metalGrad)" />
                         <circle cx="41" cy="40" r="1.5" fill="#ffffff" opacity="0.8" />
@@ -60,13 +52,90 @@
 
     <section id="sobre" class="about-section">
         <div class="container reveal">
-            <h2>O Conceito Konekta</h2>
+            <h2>Quem Somos</h2>
             <p class="about-text">
-                A tecnologia só alcança sua plenitude quando serve como ponte. A nossa marca carrega em sua essência a fusão milimétrica entre o potencial humano e o dinamismo digital. Não criamos apenas sistemas, estruturamos canais de transformação.
+                A Konekta nasceu da necessidade de unificar o mercado digital. Somos uma empresa especializada em infraestrutura de conexões estratégicas, focada em construir pontes sólidas e seguras entre negócios, tecnologias e pessoas.
             </p>
+            <div class="about-pillars">
+                <div class="pillar">
+                    <h4>Nossa Missão</h4>
+                    <p>Transformar interações digitais isoladas em ecossistemas de negócios integrados e altamente rentáveis.</p>
+                </div>
+                <div class="pillar">
+                    <h4>Nossa Visão</h4>
+                    <p>Ser a maior referência em viabilização de parcerias corporativas e networking automatizado do país.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contador-section" class="live-counter-section">
+        <div class="counter-box reveal">
+            <div class="live-indicator">
+                <span class="pulsing-dot"></span>
+                <span class="live-text">CONEXÕES EM TEMPO REAL</span>
+            </div>
+            <h2 id="live-number">1,402</h2>
+            <p>Pessoas conectadas ou fechando negócios através da Konekta neste exato momento.</p>
         </div>
     </section>
 
     <section id="servicos" class="services">
         <div class="section-title reveal">
             <h2>Nossas Soluções</h2>
+            <p>Infraestrutura moderna projetada para conectar e prosperar.</p>
+        </div>
+        <div class="services-grid">
+            <div class="card reveal">
+                <div class="card-icon">🤝</div>
+                <h3>Conectar Pessoas</h3>
+                <p>Nossa principal missão é conectar pessoas entre si. Rompemos barreiras geográficas e operacionais para aproximar talentos, clientes, parceiros e investidores, gerando um ecossistema vivo de colaboração humana direta.</p>
+            </div>
+            <div class="card reveal">
+                <div class="card-icon">🚀</div>
+                <h3>Viabilizar Negócios</h3>
+                <p>Desenvolvemos e entregamos toda a infraestrutura estratégica, tecnológica e mercadológica necessária para tirar ideias do papel e escalar operações digitais de forma segura, sustentável e lucrativa.</p>
+            </div>
+            <div class="card reveal">
+                <div class="card-icon">🌐</div>
+                <h3>Ecossistema Digital</h3>
+                <p>Integração de ponta a ponta através de plataformas inteligentes, fluxos de automação avançados e ambientes interativos que unificam a comunicação corporativa e otimizam a experiência final do usuário.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="faq-section">
+        <div class="container reveal">
+            <h2>Perguntas Frequentes</h2>
+            <div class="faq-item">
+                <h4>Como a Konekta viabiliza novos negócios?</h4>
+                <p>Nós fornecemos tanto a tecnologia de integração quanto a ponte de contato com parceiros comerciais validados no mercado digital.</p>
+            </div>
+            <div class="faq-item">
+                <h4>O suporte é humanizado?</h4>
+                <p>Sim. Embora utilizemos ferramentas digitais de última geração, toda a nossa camada estratégica é gerida por especialistas focados no sucesso do seu projeto.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato" class="contact-section">
+        <div class="reveal">
+            <h2>Pronto para Conectar?</h2>
+            <p>Fale com um de nossos especialistas e viabilize seu modelo de negócio digital hoje mesmo.</p>
+            <a href="https://wa.me/5547996414795?text=Olá!%20Gostaria%20de%20conhecer%20as%20soluções%20da%20Konekta." target="_blank" class="cta-button">Iniciar Parceria</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 KONEKTA. Todos os direitos reservados. Conectando Pessoas, Viabilizando Negócios Digitais.</p>
+    </footer>
+
+    <a href="https://wa.me/5547996414795?text=Olá!%20Gostaria%20de%20conhecer%20as%20soluções%20da%20Konekta." class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
+        <svg viewBox="0 0 32 32" class="whatsapp-icon">
+            <path d="M16 2a13 13 0 0 0-11.3 19.4L3 29l7.8-2A13 13 0 1 0 16 2zm6.7 18.5c-.3.8-1.5 1.6-2.4 1.7-.6.1-1.4.2-3.9-.8-3.2-1.3-5.3-4.6-5.5-4.8-.2-.2-1.4-1.9-1.4-3.6 0-1.7.9-2.5 1.2-2.9.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.2.5.8 2 .9 2.2.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.5.6-.2.2-.3.4-.1.8.3.5 1.1 1.9 2.4 3.1 1.7 1.5 3.1 2 3.6 2.2.4.2.7.1.9-.1.3-.3 1.1-1.3 1.4-1.8.3-.5.5-.4.8-.3.4.1 2.3 1.1 2.7 1.3.4.2.7.3.8.4.1.2.1 1-.2 1.8z" fill="currentColor"/>
+        </svg>
+    </a>
+
+    <script src="./script.js"></script>
+</body>
+</html>
