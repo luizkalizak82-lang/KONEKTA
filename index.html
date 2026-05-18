@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Konekta | Negócios Digitais</title>
+    <title>KONEKTA | Ecossistema 360° de Negócios</title>
     <link rel="stylesheet" href="./style.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
 
+    <!-- NAVBAR ATUALIZADA -->
     <nav id="navbar">
         <div class="logo">
             <span class="logo-text">KONEKTA</span>
         </div>
         <ul>
             <li><a href="#home">Home</a></li>
-            <li><a href="#sobre">Quem Somos</a></li>
+            <li><a href="#onboarding">Cadastre-se</a></li>
+            <li><a href="#abas-plataforma">A Plataforma</a></li>
+            <li><a href="#diretorio-sites">Vitrine de Sites</a></li>
             <li><a href="#contador-section">Dados ao Vivo</a></li>
-            <li><a href="#servicos">Serviços</a></li>
             <li><a href="#faq">FAQ</a></li>
             <li><a href="#contato" class="btn-contato">Fale Conosco</a></li>
         </ul>
     </nav>
 
+    <!-- HERO SECTION -->
     <section id="home" class="hero">
         <div class="hero-content">
             <div class="logo-symbol-container reveal">
@@ -35,107 +38,402 @@
                             <stop offset="100%" stop-color="#1a1a1a" />
                         </linearGradient>
                     </defs>
-                    <g>
-                        <path d="M38,28 C38,24 43,24 43,28 C43,34 35,40 42,48 C46,52 44,58 40,62 C36,66 38,72 45,72 C41,76 36,70 36,64 C36,54 44,46 38,38 C35,34 38,30 38,28 Z" fill="url(#metalGrad)" />
-                        <path d="M42,48 C48,44 58,30 65,26 C62,32 50,45 47,49 C52,53 58,66 65,72 C56,71 48,58 42,48 Z" fill="url(#metalGrad)" />
-                        <circle cx="41" cy="40" r="1.5" fill="#ffffff" opacity="0.8" />
-                        <circle cx="44" cy="51" r="1.5" fill="#ffffff" opacity="0.8" />
-                        <circle cx="49" cy="46" r="1.2" fill="#ffffff" opacity="0.6" />
-                    </g>
+                    <circle cx="50" cy="50" r="40" fill="url(#metalGrad)" />
                 </svg>
             </div>
-            <h1 class="reveal">KONEKTA</h1>
-            <p class="subtitle reveal">Conectando Pessoas, Viabilizando Negócios Digitais</p>
-            <a href="#servicos" class="cta-button reveal">Explorar Ecossistema</a>
+            <h1>Conectando Negócios, Investidores e Clientes no Brasil Real</h1>
+            <p>A única plataforma multiface que une todos os nichos do mercado — da Psicologia à Construção Civil — através de conexões comerciais, investimentos estratégicos e educação de alta performance.</p>
+            <div class="hero-buttons">
+                <a href="#onboarding" class="btn-primary">Começar Agora</a>
+                <a href="#abas-plataforma" class="btn-secondary">Conhecer a Plataforma</a>
+            </div>
         </div>
     </section>
 
-    <section id="sobre" class="about-section">
-        <div class="container reveal">
-            <h2>Quem Somos</h2>
-            <p class="about-text">
-                A Konekta nasceu da necessidade de unificar o mercado digital. Somos uma empresa especializada em infraestrutura de conexões estratégicas, focada em construir pontes sólidas e seguras entre negócios, tecnologias e pessoas.
-            </p>
-            <div class="about-pillars">
-                <div class="pillar">
-                    <h4>Nossa Missão</h4>
-                    <p>Transformar interações digitais isoladas em ecossistemas de negócios integrados e altamente rentáveis.</p>
+    <!-- SEÇÃO 1: ONBOARDING SEGMENTADO (O SEGREDO DA PERSONALIZAÇÃO) -->
+    <section id="onboarding" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Quem é você na KONEKTA?</h2>
+                <p>Escolha seu perfil abaixo para abrir as portas do ecossistema moldado para a sua realidade.</p>
+            </div>
+
+            <!-- Seletores de Perfil -->
+            <div class="profile-selector">
+                <button class="profile-btn active" onclick="switchForm('empresa')">🏢 Sou Empresa / Profissional</button>
+                <button class="profile-btn" onclick="switchForm('investidor')">💼 Sou Investidor</button>
+                <button class="profile-btn" onclick="switchForm('cliente')">👥 Sou Cliente</button>
+            </div>
+
+            <!-- Formulários Dinâmicos -->
+            <div class="form-container">
+                
+                <!-- Formulário: EMPRESA -->
+                <form id="form-empresa" class="onboarding-form active">
+                    <h3>Cadastro de Negócios (Todos os Nichos)</h3>
+                    <div class="form-group">
+                        <label>Nome da Empresa / Profissional</label>
+                        <input type="text" placeholder="Ex: Clínica Viva Bem ou Construtora Silva" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nicho de Atuação</label>
+                        <select required>
+                            <option value="">Selecione o seu mercado...</option>
+                            <option value="psicologia">Psicologia e Bem-estar</option>
+                            <option value="construcao">Construção Civil</option>
+                            <option value="varejo">Varejo / Comércio</option>
+                            <option value="tecnologia">Tecnologia / Startup</option>
+                            <option value="alimentacao">Alimentação / Gastronomia</option>
+                            <option value="outros">Outros Setores</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>O que você busca na KONEKTA?</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" value="clientes"> Atrair novos clientes</label>
+                            <label><input type="checkbox" value="investimento"> Captar recursos / Investidores</label>
+                            <label><input type="checkbox" value="cursos"> Capacitação e Cursos</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Link do seu Site ou Landing Page (Opcional)</label>
+                        <input type="url" placeholder="https://seusite.com.br ou deixe em branco para usar o perfil Konekta">
+                    </div>
+                    <div class="form-group private-data">
+                        <label>Necessidade de Capital para Expansão (Opcional/Sigiloso)</label>
+                        <input type="text" placeholder="Ex: R$ 100.000 para abertura de nova filial">
+                    </div>
+                    <button type="submit" class="btn-submit">Criar Perfil de Negócio</button>
+                </form>
+
+                <!-- Formulário: INVESTIDOR -->
+                <form id="form-investidor" class="onboarding-form">
+                    <h3>Cadastro de Investidores e Sócios</h3>
+                    <div class="form-group">
+                        <label>Nome Completo ou Nome do Fundo</label>
+                        <input type="text" placeholder="Ex: João Silva ou Nexus Capital" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Nichos de Maior Interesse para Aporte</label>
+                        <div class="checkbox-grid">
+                            <label><input type="checkbox" value="psicologia"> Saúde e Psicologia</label>
+                            <label><input type="checkbox" value="construcao"> Construção e Imobiliário</label>
+                            <label><input type="checkbox" value="varejo"> Varejo e Franquias</label>
+                            <label><input type="checkbox" value="tecnologia"> Tecnologia e Inovação</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Ticket Médio por Investimento</label>
+                        <select required>
+                            <option value="seed">Até R$ 50.000</option>
+                            <option value="growth-1">R$ 50.000 a R$ 200.000</option>
+                            <option value="growth-2">R$ 200.000 a R$ 500.000</option>
+                            <option value="scale">Acima de R$ 500.000</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn-submit">Acessar Deal Flow Nacional</button>
+                </form>
+
+                <!-- Formulário: CLIENTE -->
+                <form id="form-cliente" class="onboarding-form">
+                    <h3>Cadastro de Clientes e Consumidores</h3>
+                    <div class="form-group">
+                        <label>Como você deseja se cadastrar?</label>
+                        <select id="tipo-cliente" required>
+                            <option value="pf">Pessoa Física (Quero contratar serviços/produtos)</option>
+                            <option value="pb2b">Empresa / Cliente B2B (Busco fornecedores estratégicos)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Quais soluções você precisa encontrar agora?</label>
+                        <input type="text" placeholder="Ex: Terapeuta especializado, Empreiteira, Consultoria...">
+                    </div>
+                    <button type="submit" class="btn-submit">Entrar no Shopping de Soluções</button>
+                </form>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 2: AS 4 ABAS DA PLATAFORMA (VISÃO INTERNA) -->
+    <section id="abas-plataforma" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Explore o Ecossistema KONEKTA</h2>
+                <p>Navegue pelas quatro engrenagens que fazem a economia girar dentro do nosso ecossistema.</p>
+            </div>
+
+            <!-- Abas de Navegação Fictícia/Real -->
+            <div class="platform-tabs">
+                <div class="tab-item" onclick="showTab('tab-investidores')">
+                    <span class="tab-icon">💼</span>
+                    <h4>Aba Investidores</h4>
                 </div>
-                <div class="pillar">
-                    <h4>Nossa Visão</h4>
-                    <p>Ser a maior referência em viabilização de parcerias corporativas e networking automatizado do país.</p>
+                <div class="tab-item" onclick="showTab('tab-negocios')">
+                    <span class="tab-icon">🏢</span>
+                    <h4>Aba Negócios</h4>
+                </div>
+                <div class="tab-item" onclick="showTab('tab-clientes')">
+                    <span class="tab-icon">👥</span>
+                    <h4>Aba Clientes</h4>
+                </div>
+                <div class="tab-item" onclick="showTab('tab-cursos')">
+                    <span class="tab-icon">📚</span>
+                    <h4>Aba Cursos</h4>
+                </div>
+            </div>
+
+            <!-- Conteúdo das Abas -->
+            <div class="tabs-content-container">
+                
+                <!-- CARD INVESTIDORES -->
+                <div id="tab-investidores" class="tab-content active">
+                    <div class="tab-grid">
+                        <div class="tab-text">
+                            <h3>Vitrine de Oportunidades Reais</h3>
+                            <p>Chega de investir apenas em ideias no papel. Aqui, investidores acompanham o crescimento de empresas reais em tempo real através de dados validados de tração.</p>
+                            <ul>
+                                <li><strong>Filtros por Setor:</strong> Encontre construtoras, clínicas ou comércios locais em segundos.</li>
+                                <li><strong>Dados Protegidos:</strong> Acesse governança jurídica, faturamento e pitch decks direto com o fundador.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-preview-card">
+                            <div class="preview-badge">Oportunidade Recente</div>
+                            <h4>Construtora Verticalize S.A.</h4>
+                            <p class="nicho-tag">Construção Civil • SC</p>
+                            <p>Buscando R$ 350.000 para incorporação de novo condomínio residencial.</p>
+                            <div class="progress-bar"><span style="width: 75%"></span></div>
+                            <small>75% da rodada concluída</small>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD NEGÓCIOS -->
+                <div id="tab-negocios" class="tab-content">
+                    <div class="tab-grid">
+                        <div class="tab-text">
+                            <h3>O Quartel General do Seu Negócio</h3>
+                            <p>Gerencie sua empresa de forma dupla e simplificada. Tenha uma vitrine otimizada para capturar clientes e, simultaneamente, um canal estruturado para atrair capital de crescimento.</p>
+                            <ul>
+                                <li><strong>Perfil Bifocal:</strong> O cliente vê seus produtos; o investidor vê seus indicadores.</li>
+                                <li><strong>Efeito de Rede:</strong> Quanto mais você vende pela KONEKTA, mais atraente seu perfil fica para fundos de investimento.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-preview-card">
+                            <h4>Clínica de Psicologia Humanamente</h4>
+                            <p class="nicho-tag">Psicologia • SP</p>
+                            <div class="stats-mini">
+                                <div><strong>Clientes Ativos:</strong> +140</div>
+                                <div><strong>Crescimento Mensal:</strong> +18%</div>
+                            </div>
+                            <span class="status-pill">Disponível para Parcerias B2B</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD CLIENTES -->
+                <div id="tab-clientes" class="tab-content">
+                    <div class="tab-grid">
+                        <div class="tab-text">
+                            <h3>Um Shopping de Soluções Confiáveis</h3>
+                            <p>Encontre profissionais e empresas avaliados pela comunidade. De psicólogos clínicos especializados a grandes fornecedores industriais para a sua obra.</p>
+                            <ul>
+                                <li><strong>Reviews Reais:</strong> Contrate com base em avaliações e histórico transparente de entregas.</li>
+                                <li><strong>Canal Direto:</strong> Solicite orçamentos, agende consultas ou compre produtos de forma integrada, sem intermediários abusivos.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-preview-card">
+                            <h4>Busca de Soluções Avançada</h4>
+                            <div class="search-box-mock">
+                                <span>🔍 Procurar psicólogos em Florianópolis...</span>
+                            </div>
+                            <div class="result-item-mock">
+                                <strong>Dra. Mariana Costa</strong>
+                                <p>Psicologia Clínica Cognitivo-Comportamental ⭐ 4.9 (42 avaliações)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CARD CURSOS -->
+                <div id="tab-cursos" class="tab-content">
+                    <div class="tab-grid">
+                        <div class="tab-text">
+                            <h3>O Motor de Educação e Engajamento</h3>
+                            <p>Não oferecemos apenas conexões, oferecemos o mapa. Trilhas educacionais criadas em parceria com os maiores especialistas de cada nicho del mercado brasileiro.</p>
+                            <ul>
+                                <li><strong>Cursos de Gestão Universal:</strong> Finanças, Growth, Marketing Digital e Atendimento.</li>
+                                <li><strong>Cursos por Nicho Especialista:</strong> Marketing ético para psicólogos, captação de recursos para loteamentos, inteligência comercial B2B.</li>
+                            </ul>
+                        </div>
+                        <div class="tab-preview-card">
+                            <div class="course-card-mock">
+                                <span class="badge-course">Trilha Negócios</span>
+                                <h4>Como Preparar sua PME para Receber Investidores</h4>
+                                <small>Instrutor: Mentor de Venture Capital</small>
+                                <button class="btn-play-mock">Assistir Aula 1</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SEÇÃO 3: VITRINE E HOSPEDAGEM DE SITES POR NICHO -->
+    <section id="diretorio-sites" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Vitrine de Negócios KONEKTA</h2>
+                <p>Explore os sites oficiais e páginas exclusivas das empresas do ecossistema, separados por segmento.</p>
+            </div>
+
+            <!-- Filtros de Nicho Rápidos -->
+            <div class="nicho-filters">
+                <button class="filter-btn active">Todos os Nichos</button>
+                <button class="filter-btn">🏢 Construção Civil</button>
+                <button class="filter-btn">🧠 Psicologia & Saúde</button>
+                <button class="filter-btn">🛍️ Varejo & Comércio</button>
+                <button class="filter-btn">💻 Tecnologia</button>
+            </div>
+
+            <!-- Grade de Sites Hospedados -->
+            <div class="sites-grid">
+                
+                <!-- Site 1: Psicologia -->
+                <div class="site-card">
+                    <div class="site-preview-thumb-psy">
+                        <span class="site-status-online">● Online</span>
+                    </div>
+                    <div class="site-card-body">
+                        <span class="badge-nicho">Psicologia & Saúde</span>
+                        <h3>Clínica Florescer</h3>
+                        <p>Psicoterapia especializada em ansiedade e desenvolvimento pessoal. Atendimento presencial e online.</p>
+                        <div class="site-card-footer">
+                            <span class="site-url">konekta.com/clinica-florescer</span>
+                            <a href="#" class="btn-visitar">Visitar Site</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site 2: Construção -->
+                <div class="site-card">
+                    <div class="site-preview-thumb-eng">
+                        <span class="site-status-online">● Online</span>
+                    </div>
+                    <div class="site-card-body">
+                        <span class="badge-nicho">Construção Civil</span>
+                        <h3>Moraes Engenharia</h3>
+                        <p>Execução de obras residenciais e comerciais de alto padrão. Do projeto ao acabamento com inteligência.</p>
+                        <div class="site-card-footer">
+                            <span class="site-url">konekta.com/moraes-eng</span>
+                            <a href="#" class="btn-visitar">Visitar Site</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Site 3: Tecnologia -->
+                <div class="site-card">
+                    <div class="site-preview-thumb-tech">
+                        <span class="site-status-online">● Online</span>
+                    </div>
+                    <div class="site-card-body">
+                        <span class="badge-nicho">Tecnologia</span>
+                        <h3>Logix Sistemas</h3>
+                        <p>Sistemas ERP automatizados para gestão de estoques e automação comercial de pequenos varejos.</p>
+                        <div class="site-card-footer">
+                            <span class="site-url">konekta.com/logix-tech</span>
+                            <a href="#" class="btn-visitar">Visitar Site</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- DADOS AO VIVO -->
+    <section id="contador-section" class="section-padding bg-light">
+        <div class="container">
+            <div class="counters-grid">
+                <div class="counter-item">
+                    <h3 class="counter-number">+15.000</h3>
+                    <p>Empresas e Profissionais</p>
+                </div>
+                <div class="counter-item">
+                    <h3 class="counter-number">R$ 12M+</h3>
+                    <p>Em Transações e Aportes</p>
+                </div>
+                <div class="counter-item">
+                    <h3 class="counter-number">+50.000</h3>
+                    <p>Clientes Conectados</p>
+                </div>
+                <div class="counter-item">
+                    <h3 class="counter-number">100%</h3>
+                    <p>Foco no Mercado Brasileiro</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contador-section" class="live-counter-section">
-        <div class="counter-box reveal">
-            <div class="live-indicator">
-                <span class="pulsing-dot"></span>
-                <span class="live-text">CONEXÕES EM TEMPO REAL</span>
+    <!-- FAQ SECTION -->
+    <section id="faq" class="section-padding">
+        <div class="container">
+            <div class="section-header">
+                <h2>Dúvidas Frequentes</h2>
+                <p>Entenda rapidamente como a engrenagem da KONEKTA funciona para você.</p>
             </div>
-            <h2 id="live-number">1,402</h2>
-            <p>Pessoas conectadas ou fechando negócios através da Konekta neste exato momento.</p>
-        </div>
-    </section>
-
-    <section id="servicos" class="services">
-        <div class="section-title reveal">
-            <h2>Nossas Soluções</h2>
-            <p>Infraestrutura moderna projetada para conectar e prosperar.</p>
-        </div>
-        <div class="services-grid">
-            <div class="card reveal">
-                <div class="card-icon">🤝</div>
-                <h3>Conectar Pessoas</h3>
-                <p>Nossa principal missão é conectar pessoas entre si. Rompemos barreiras geográficas e operacionais para aproximar talentos, clientes, parceiros e investidores, gerando um ecossistema vivo de colaboração humana direta.</p>
-            </div>
-            <div class="card reveal">
-                <div class="card-icon">🚀</div>
-                <h3>Viabilizar Negócios</h3>
-                <p>Desenvolvemos e entregamos toda a infraestrutura estratégica, tecnológica e mercadológica necessária para tirar ideias do papel e escalar operações digitais de forma segura, sustentável e lucrativa.</p>
-            </div>
-            <div class="card reveal">
-                <div class="card-icon">🌐</div>
-                <h3>Ecossistema Digital</h3>
-                <p>Integração de ponta a ponta através de plataformas inteligentes, fluxos de automação avançados e ambientes interativos que unificam a comunicação corporativa e otimizam a experiência final do usuário.</p>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <h4>A KONEKTA atende apenas empresas de tecnologia?</h4>
+                    <p>Não! Esse é nosso maior diferencial. Focamos no Brasil Real. Conectamos empresas de todos os nichos, incluindo construção civil, clínicas de psicologia, advocacia, comércio e serviços locais.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Como funciona a privacidade dos dados financeiros?</h4>
+                    <p>Seus dados de faturamento e pitch decks ficam totalmente ocultos do público geral e de clientes. Eles só são exibidos para perfis validados como "Investidores" e após a sua autorização explícita na plataforma.</p>
+                </div>
+                <div class="faq-item">
+                    <h4>Os cursos são pagos à parte?</h4>
+                    <p>Possuímos trilhas gratuitas de nivelamento para todos os usuários cadastrados e uma assinatura Premium que libera cursos de especialização técnica por nicho e mentorias coletivas ao vivo.</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="faq" class="faq-section">
-        <div class="container reveal">
-            <h2>Perguntas Frequentes</h2>
-            <div class="faq-item">
-                <h4>Como a Konekta viabiliza novos negócios?</h4>
-                <p>Nós fornecemos tanto a tecnologia de integração quanto a ponte de contato com parceiros comerciais validados no mercado digital.</p>
-            </div>
-            <div class="faq-item">
-                <h4>O suporte é humanizado?</h4>
-                <p>Sim. Embora utilizemos ferramentas digitais de última geração, toda a nossa camada estratégica é gerida por especialistas focados no sucesso do seu projeto.</p>
+    <!-- CONTATO / SUPORTE -->
+    <section id="contato" class="section-padding bg-light">
+        <div class="container">
+            <div class="section-header">
+                <h2>Fale Conosco</h2>
+                <p>Tem alguma dúvida sobre como posicionar sua empresa ou tese de investimento? Fale com nosso time de suporte.</p>
             </div>
         </div>
     </section>
 
-    <section id="contato" class="contact-section">
-        <div class="reveal">
-            <h2>Pronto para Conectar?</h2>
-            <p>Fale com um de nossos especialistas e viabilize seu modelo de negócio digital hoje mesmo.</p>
-            <a href="https://wa.me/5547996414795?text=Olá!%20Gostaria%20de%20conhecer%20as%20soluções%20da%20Konekta." target="_blank" class="cta-button">Iniciar Parceria</a>
-        </div>
-    </section>
+    <!-- INTERATIVIDADE BÁSICA -->
+    <script>
+        function switchForm(profile) {
+            document.querySelectorAll('.profile-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) {
+                event.target.classList.add('active');
+            }
+            
+            document.querySelectorAll('.onboarding-form').forEach(form => form.classList.remove('active'));
+            const targetForm = document.getElementById('form-' + profile);
+            if (targetForm) {
+                targetForm.classList.add('active');
+            }
+        }
 
-    <footer>
-        <p>&copy; 2026 KONEKTA. Todos os direitos reservados. Conectando Pessoas, Viabilizando Negócios Digitais.</p>
-    </footer>
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            const targetTab = document.getElementById(tabId);
+            if (targetTab) {
+                targetTab.classList.add('active');
+            }
+        }
+    </script>
 
-    <a href="https://wa.me/5547996414795?text=Olá!%20Gostaria%20de%20conhecer%20as%20soluções%20da%20Konekta." class="whatsapp-float" target="_blank" title="Fale conosco no WhatsApp">
-        <svg viewBox="0 0 32 32" class="whatsapp-icon">
-            <path d="M16 2a13 13 0 0 0-11.3 19.4L3 29l7.8-2A13 13 0 1 0 16 2zm6.7 18.5c-.3.8-1.5 1.6-2.4 1.7-.6.1-1.4.2-3.9-.8-3.2-1.3-5.3-4.6-5.5-4.8-.2-.2-1.4-1.9-1.4-3.6 0-1.7.9-2.5 1.2-2.9.3-.3.6-.4.8-.4h.6c.2 0 .4 0 .6.5.2.5.8 2 .9 2.2.1.2.1.4 0 .6-.1.2-.2.4-.4.6-.2.2-.4.4-.5.6-.2.2-.3.4-.1.8.3.5 1.1 1.9 2.4 3.1 1.7 1.5 3.1 2 3.6 2.2.4.2.7.1.9-.1.3-.3 1.1-1.3 1.4-1.8.3-.5.5-.4.8-.3.4.1 2.3 1.1 2.7 1.3.4.2.7.3.8.4.1.2.1 1-.2 1.8z" fill="currentColor"/>
-        </svg>
-    </a>
-
-    <script src="./script.js"></script>
 </body>
 </html>
