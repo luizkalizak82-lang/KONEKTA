@@ -20,7 +20,7 @@
             <ul>
                 <li><a href="#onboarding">Cadastre-se</a></li>
                 <li><a href="#diretorio-sites">Vitrine de Sites</a></li>
-                <li><a href="#" class="btn-contato" onclick="simularLogin()">Entrar / Login</a></li>
+                <li><a href="#" class="btn-contato" onclick="abrirModalAutenticacao()">Entrar / Login</a></li>
             </ul>
         </nav>
 
@@ -36,7 +36,47 @@
             </div>
         </section>
 
-        <!-- ONBOARDING DE CADASTRO -->
+        <!-- NOVO MODAL UNIFICADO: AUTENTICAÇÃO ANTIFRAUDE E GOOGLE AUTH -->
+        <div id="auth-modal" class="konekta-modal style-hidden">
+            <div class="modal-content">
+                <span class="close-modal" onclick="fecharModalAutenticacao()">&times;</span>
+                <h3>Acessar a Plataforma KONEKTA</h3>
+                
+                <!-- Botão de Login Social SSO -->
+                <button class="btn-google-auth" id="btnGoogleAuth" onclick="autenticarGoogle()">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg" alt="Google Logo" width="18">
+                    Entrar com o Google
+                </button>
+                
+                <div class="auth-divider"><span>ou acesse manualmente</span></div>
+
+                <form id="konektaLoginForm" onsubmit="tratarLoginManual(event)">
+                    <div class="form-group">
+                        <label>E-mail Corporativo ou Pessoal</label>
+                        <input type="email" id="login-email" placeholder="seu@email.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Senha de Acesso</label>
+                        <input type="password" id="login-senha" placeholder="Sua senha segura" required>
+                    </div>
+                    <button type="submit" class="btn-submit">Verificar e Entrar</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- NOVO MODAL: VERIFICAÇÃO DE E-MAIL REAL (TOKEN BARRANTE) -->
+        <div id="token-modal" class="konekta-modal style-hidden">
+            <div class="modal-content security-check">
+                <h3>🛡️ Validação Antifraude</h3>
+                <p>Enviamos um token de validação de 6 dígitos para o e-mail informado. Insira-o abaixo para liberar seu acesso.</p>
+                <div class="form-group">
+                    <input type="text" id="email-token" maxlength="6" placeholder="000000" style="text-align: center; font-size: 24px; letter-spacing: 8px;">
+                </div>
+                <button class="btn-submit" onclick="validarTokenSeguranca()">Confirmar Token</button>
+            </div>
+        </div>
+
+        <!-- ONBOARDING DE CADASTRO (MÓDULO DE 3 ABAS DINÂMICAS) -->
         <section id="onboarding" class="section-padding">
             <div class="container">
                 <div class="section-header">
@@ -44,46 +84,76 @@
                     <p>Escolha seu perfil abaixo para abrir as portas do ecossistema moldado para a sua realidade.</p>
                 </div>
 
+                <!-- Interface de 3 Abas Atualizada -->
                 <div class="profile-selector">
-                    <button class="profile-btn active" onclick="switchForm('empresa')">🏢 Sou Empresa / Profissional</button>
-                    <button class="profile-btn" onclick="switchForm('investidor')">💼 Sou Investidor</button>
+                    <button class="profile-btn active" id="tab-cliente" onclick="alternarAbaCadastro('cliente')">👤 Sou Cliente</button>
+                    <button class="profile-btn" id="tab-investidor" onclick="alternarAbaCadastro('investidor')">💼 Sou Investidor</button>
+                    <button class="profile-btn" id="tab-empresa" onclick="alternarAbaCadastro('empresa')">🏢 Sou Empresa</button>
                 </div>
 
                 <div class="form-container">
-                    <!-- Formulário: EMPRESA -->
-                    <form id="form-empresa" class="onboarding-form active" onsubmit="event.preventDefault(); simularLogin();">
-                        <h3>Cadastro de Negócios</h3>
+                    <form id="form-onboarding-unificado" class="onboarding-form active" onsubmit="tratarCadastroFluxo(event)">
+                        <h3 id="onboarding-form-title">Cadastro de Clientes</h3>
+                        
+                        <!-- Campos de Autenticação de Base -->
                         <div class="form-group">
-                            <label>Nome da Empresa / Profissional</label>
-                            <input type="text" placeholder="Ex: Clínica Viva Bem" required>
+                            <label>E-mail Real para Validação</label>
+                            <input type="email" id="onboarding-email" placeholder="nome@provedor.com" required>
                         </div>
                         <div class="form-group">
-                            <label>Nicho de Atuação</label>
-                            <select required>
-                                <option value="">Selecione o seu mercado...</option>
-                                <option value="psicologia">Psicologia e Bem-estar</option>
-                                <option value="construcao">Construção Civil</option>
-                                <option value="varejo">Varejo / Comércio</option>
-                                <option value="tecnologia">Tecnologia / Startup</option>
-                            </select>
+                            <label>Construa uma Senha</label>
+                            <input type="password" id="onboarding-senha" placeholder="Mínimo 6 caracteres" required>
                         </div>
-                        <button type="submit" class="btn-submit">Criar Perfil e Entrar</button>
-                    </form>
 
-                    <!-- Formulário: INVESTIDOR -->
-                    <form id="form-investidor" class="onboarding-form" onsubmit="event.preventDefault(); simularLogin();">
-                        <h3>Cadastro de Investidores</h3>
-                        <div class="form-group">
-                            <label>Nome Completo ou Fundo</label>
-                            <input type="text" placeholder="Ex: João Silva" required>
+                        <!-- Campos Injetados Dinamicamente via Javascript (Identificação / Documento) -->
+                        <div id="campos-dinamicos-documento">
+                            <div class="form-group">
+                                <label id="label-nome">Nome Completo</label>
+                                <input type="text" id="input-nome" placeholder="Ex: Luiz Kalizak" required>
+                            </div>
+                            <div class="form-group">
+                                <label id="label-documento">CPF</label>
+                                <input type="text" id="input-documento" placeholder="000.000.000-00" required>
+                            </div>
                         </div>
-                        <button type="submit" class="btn-submit">Acessar Deal Flow</button>
+
+                        <button type="submit" class="btn-submit">Prosseguir para Ramos de Atuação</button>
                     </form>
                 </div>
             </div>
         </section>
 
-        <!-- VITRINE PÚBLICA -->
+        <!-- NOVO MODAL DE ONBOARDING: SELETOR DE NICHOS EM CASCATA DEPENDENTE -->
+        <div id="nicho-modal" class="konekta-modal style-hidden">
+            <div class="modal-content">
+                <h3>Defina seu Segmento de Mercado</h3>
+                <p>Selecione a sua macro-categoria e sub-nicho exato para indexação na vitrine.</p>
+                
+                <div class="form-group">
+                    <label>Grande Área (Macro-Categoria)</label>
+                    <select id="macro-categoria-select" onchange="atualizarSubNichosCascata()" required>
+                        <option value="">Selecione o setor...</option>
+                        <option value="saude">Saúde e Bem-Estar</option>
+                        <option value="tecnologia">Tecnologia e Inovação</option>
+                        <option value="alimentos">Alimentos e Bebidas</option>
+                        <option value="varejo">Varejo e Comércio</option>
+                        <option value="servicos">Serviços Profissionais</option>
+                        <option value="industria">Indústria e Produção</option>
+                    </select>
+                </div>
+
+                <div class="form-group style-hidden" id="sub-nicho-group">
+                    <label>Especialidade / Nicho Específico</label>
+                    <select id="sub-nicho-select" required>
+                        <!-- Injetado dinamicamente via JS (Ex: Psicologia Clínica, Psicanálise) -->
+                    </select>
+                </div>
+
+                <button class="btn-submit" onclick="concluirOnboardingEfetivo()">Finalizar Configuração e Entrar</button>
+            </div>
+        </div>
+
+        <!-- VITRINE PÚBLICA (PRESERVADA) -->
         <section id="diretorio-sites" class="section-padding bg-light">
             <div class="container">
                 <div class="section-header">
@@ -112,7 +182,7 @@
     </div>
 
     <!-- ==========================================
-       PAINEL INTERNO INTERATIVO (PÓS-LOGIN)
+       PAINEL INTERNO INTERATIVO (PÓS-LOGIN - PRESERVADO)
        ========================================== -->
     <div id="app-dashboard" class="dashboard-hidden">
         <!-- Sidebar de Navegação Interna -->
@@ -129,7 +199,7 @@
         <!-- Área Principal de Conteúdo -->
         <main class="main-content">
             
-            <!-- ABA 1: CONEXÕES (ADICIONAR EMPRESAS/INVESTIDORES) -->
+            <!-- ABA 1: CONEXÕES (ADICIONAR EMPRESAS/INVESTIDORES MANUALMENTE) -->
             <section id="aba-conexoes" class="dashboard-section active">
                 <div class="dash-header">
                     <h2>Central de Conexões Estratégicas</h2>
@@ -137,9 +207,9 @@
                 </div>
 
                 <div class="dash-grid-layout">
-                    <!-- Formulário de Inclusão Interno -->
+                    <!-- Formulário de Inclusão Interno (Curadoria da Equipe Konekta) -->
                     <div class="dash-card">
-                        <h3>Adicionar Novo Ativo ao Ecossistema</h3>
+                        <h3>Adicionar Novo Ativo ao Ecossistema (Painel Operacional)</h3>
                         <form id="form-adicionar-ativo" onsubmit="adicionarAtivo(event)">
                             <div class="form-group">
                                 <label>Tipo de Registro</label>
@@ -173,20 +243,22 @@
                                 <span class="tag-tipo">🏢 Empresa Buscando Capital</span>
                                 <h4>Verticalize Construções</h4>
                                 <p><strong>Nicho:</strong> Construção Civil</p>
-                                <p>Necessidade de R$ 350.000 para incorporação e compra de maquinário pesado.</p>
+                                <p>Consolidação de rodada: Busca de R$ 350.000 para incorporação e maquinários.</p>
+                                <button class="btn-interessar-chat" onclick="vincularSalaNegociacao('Verticalize Construções')">Demonstrar Interesse / Chamar no Chat</button>
                             </div>
                             <div class="ativo-item-card investidor-tipo">
                                 <span class="tag-tipo">💼 Investidor Anjo / Fundo</span>
                                 <h4>Gomes Participações</h4>
                                 <p><strong>Foco:</strong> Saúde e Clínicas de Psicologia</p>
                                 <p>Disponibilidade de aporte imediato de até R$ 150.000 para expansão de filiais físicas.</p>
+                                <button class="btn-interessar-chat" onclick="vincularSalaNegociacao('Gomes Participações')">Demonstrar Interesse / Chamar no Chat</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- ABA 2: CHAT DE NEGÓCIOS -->
+            <!-- ABA 2: CHAT DE NEGÓCIOS (VÍNCULO BILATERAL COM UPLOAD DE ARQUIVOS) -->
             <section id="aba-chat" class="dashboard-section">
                 <div class="dash-header">
                     <h2>Chat Exclusivo: Investidores & Empresários</h2>
@@ -196,9 +268,9 @@
                 <div class="chat-container-layout">
                     <!-- Lista de Conversas Laterais -->
                     <div class="chat-sidebar">
-                        <div class="chat-user-item active">
-                            <strong>Dr. Marcos (Investidor)</strong>
-                            <small>Digitando...</small>
+                        <div class="chat-user-item active" id="chat-sala-ativa">
+                            <strong id="chat-nome-corrente">Dr. Marcos (Investidor)</strong>
+                            <small id="chat-status-sub">Status: Em Negociação</small>
                         </div>
                         <div class="chat-user-item">
                             <strong>Eng. Ricardo (Moraes Eng.)</strong>
@@ -212,10 +284,14 @@
                                 <strong>Dr. Marcos:</strong> Olá! Vi sua apresentação no mural sobre a expansão da clínica de psicologia. Gostaria de analisar o DRE.
                             </div>
                             <div class="msg-box sent">
-                                <strong>Você:</strong> Perfeito, Dr. Marcos! Nossos dados estão auditados. Vou enviar o arquivo em PDF por aqui.
+                                <strong>Você:</strong> Perfeito! Nossos dados estão auditados. Vou enviar o arquivo em PDF por aqui.
                             </div>
                         </div>
+                        
+                        <!-- Barra de Ações com Upload de Propostas/PDF adicionado -->
                         <div class="chat-input-bar">
+                            <label for="chat-file-upload" class="btn-upload-file" title="Enviar PDF/Pitch Deck">📎</label>
+                            <input type="file" id="chat-file-upload" accept="application/pdf, image/*" style="display:none;" onchange="tratarUploadChat(this)">
                             <input type="text" id="chat-input-text" placeholder="Escreva sua mensagem comercial...">
                             <button onclick="enviarMensagem()">Enviar</button>
                         </div>
@@ -223,15 +299,15 @@
                 </div>
             </section>
 
-            <!-- ABA 3: HUB DE CURSOS -->
+            <!-- ABA 3: HUB DE CURSOS (FILTRADOS POR PERFIL E SEGMENTO) -->
             <section id="aba-cursos" class="dashboard-section">
                 <div class="dash-header">
-                    <h2>Hub de Educação de Alta Performance</h2>
+                    <h2>Hub de Educação de Alta Performance (Trilhas Estratégicas)</h2>
                     <p>Aprenda a estruturar o backoffice da sua empresa ou refinar sua tese de investimento.</p>
                 </div>
 
                 <div class="cursos-grid-layout">
-                    <!-- Curso 1 -->
+                    <!-- Curso 1 - Trilha Empresas / Clientes -->
                     <div class="curso-card">
                         <div class="curso-thumb font-psicologia">Psicologia & Gestão</div>
                         <div class="curso-body">
@@ -242,7 +318,7 @@
                         </div>
                     </div>
 
-                    <!-- Curso 2 -->
+                    <!-- Curso 2 - Trilha Empresas -->
                     <div class="curso-card">
                         <div class="curso-thumb font-construcao">Construção Civil</div>
                         <div class="curso-body">
@@ -253,7 +329,7 @@
                         </div>
                     </div>
 
-                    <!-- Curso 3 -->
+                    <!-- Curso 3 - Trilha Investidores -->
                     <div class="curso-card">
                         <div class="curso-thumb font-investimento">M&A / Valuation</div>
                         <div class="curso-body">
@@ -268,6 +344,16 @@
 
         </main>
     </div>
+
+    <!-- ==========================================
+       SUPORTE FLUTUANTE PERSISTENTE (WHATSAPP DO FUNDADOR)
+       ========================================== -->
+    <a href="https://wa.me/5547999999999?text=Ol%C3%A1%20suporte%20KONEKTA%2C%20estou%20na%20plataforma%20e%20preciso%20de%20aux%C3%ADlio." 
+       class="floating-whatsapp-support" 
+       target="_blank" 
+       title="Falar com o Suporte">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" alt="WhatsApp Suporte Konekta">
+    </a>
 
     <!-- CARREGAMENTO DOS SCRIPTS -->
     <script src="./script.js"></script>
