@@ -1,53 +1,56 @@
-document.addEventListener("DOMContentLoaded", function() {
+// 1. ALTERNADOR DE FORMULÁRIOS (ONBOARDING)
+function switchForm(profile) {
+    // Altera o estado do botão clicado
+    document.querySelectorAll('.profile-btn').forEach(btn => btn.classList.remove('active'));
+    if (event && event.target) {
+        event.target.classList.add('active');
+    }
     
-    const navbar = document.querySelector("#navbar");
-    const revealElements = document.querySelectorAll(".reveal");
-    const counterElement = document.getElementById("live-number");
+    // Altera o formulário visível
+    document.querySelectorAll('.onboarding-form').forEach(form => form.classList.remove('active'));
+    const targetForm = document.getElementById('form-' + profile);
+    if (targetForm) {
+        targetForm.classList.add('active');
+    }
+}
 
-    // 1. Mudança de fundo da Navbar ao rolar
-    window.addEventListener("scroll", function() {
-        if (window.scrollY > 40) {
-            navbar.classList.add("scrolled");
-        } else {
-            navbar.classList.remove("scrolled");
-        }
-    });
+// 2. NAVEGAÇÃO DAS ABAS INTERNAS DA PLATAFORMA
+function showTab(tabId) {
+    // Esconde todas as abas
+    document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+    
+    // Mostra a aba desejada
+    const targetTab = document.getElementById(tabId);
+    if (targetTab) {
+        targetTab.classList.add('active');
+    }
+}
 
-    // 2. Animação de aparição fluida (Scroll Reveal)
-    function checkReveal() {
-        const triggerBottom = (window.innerHeight / 5) * 4.5;
-        revealElements.forEach(element => {
-            const elementTop = element.getBoundingClientRect().top;
-            if (elementTop < triggerBottom) {
-                element.classList.add("active");
-            }
+// 3. SISTEMA INTERATIVO DE FILTROS PARA A VITRINE DE SITES
+document.addEventListener("DOMContentLoaded", function() {
+    const filterButtons = document.querySelectorAll('.filter-btn');
+    const siteCards = document.querySelectorAll('.site-card');
+
+    filterButtons.forEach(button => {
+        button.addEventListener('click', function(e) {
+            // Remove a classe active de todos os botões de filtro
+            filterButtons.forEach(btn => btn.classList.remove('active'));
+            // Adiciona no botão atual clicado
+            e.target.classList.add('active');
+
+            // Pega o texto do filtro limpando o emoji (ex: "Construção Civil")
+            const filterValue = e.target.textContent.replace(/[^\w\s&Á-ÿ]/gi, '').trim().toLowerCase();
+
+            siteCards.forEach(card => {
+                const cardNicho = card.querySelector('.badge-nicho').textContent.trim().toLowerCase();
+                
+                // Se for "todos os nichos" ou bater com o nome do nicho do card, exibe. Se não, esconde.
+                if (filterValue.includes('todos os nichos') || cardNicho === filterValue) {
+                    card.classList.remove('hide');
+                } else {
+                    card.classList.add('hide');
+                }
+            });
         });
-    }
-    window.addEventListener("scroll", checkReveal);
-    setTimeout(checkReveal, 200);
-
-    // 3. Simulador de Contador em Tempo Real Dinâmico
-    let currentConnections = 1402; // Número inicial base
-
-    function updateCounter() {
-        // Gera uma variação aleatória entre -3 e +4 conexões
-        const change = Math.floor(Math.random() * 8) - 3;
-        currentConnections += change;
-
-        // Mantém o número sempre em um intervalo realista
-        if (currentConnections < 1350) currentConnections += 10;
-        if (currentConnections > 1500) currentConnections -= 10;
-
-        // Formata o número com a vírgula/ponto de milhar
-        counterElement.textContent = currentConnections.toLocaleString('en-US');
-        
-        // Próxima mudança acontece em um tempo aleatório entre 2 e 5 segundos
-        const nextTime = Math.floor(Math.random() * 3000) + 2000;
-        setTimeout(updateCounter, nextTime);
-    }
-
-    // Inicia a variação do contador automático
-    if(counterElement) {
-        setTimeout(updateCounter, 2000);
-    }
+    });
 });
