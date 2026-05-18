@@ -1,4 +1,6 @@
-/* VARIABLES & BASE */
+/* ==========================================================================
+   VARIABLES & BASE (PRESERVADOS)
+   ========================================================================== */
 :root {
     --bg-dark: #0b0b0c;
     --bg-light: #121214;
@@ -9,107 +11,799 @@
     --accent-blue: #007aff;
 }
 
-* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; scroll-behavior: smooth; }
-body { background-color: var(--bg-dark); color: var(--text-primary); line-height: 1.6; overflow-x: hidden; }
-.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
-.section-padding { padding: 100px 0; }
-.bg-light { background-color: var(--bg-light); }
-.section-header { text-align: center; margin-bottom: 50px; }
-.section-header h2 { font-size: 2.3rem; margin-bottom: 1rem; }
-.section-header p { color: var(--text-secondary); }
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    font-family: 'Inter', sans-serif; 
+    scroll-behavior: smooth; 
+}
 
-/* AUTH SCREEN HERO */
-#navbar { position: fixed; top: 0; width: 100%; display: flex; justify-content: space-between; align-items: center; padding: 1.5rem 4rem; background: rgba(11,11,12,0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--card-border); z-index: 100; }
-.logo-text { font-weight: 800; font-size: 1.3rem; letter-spacing: 2px; }
-#navbar ul { display: flex; list-style: none; gap: 2rem; align-items: center; }
-#navbar a { color: var(--text-secondary); text-decoration: none; font-size: 0.9rem; }
-#navbar .btn-contato { background: #fff; color: #000; padding: 0.5rem 1rem; border-radius: 4px; font-weight: 600; }
-.hero { height: 75vh; display: flex; align-items: center; justify-content: center; text-align: center; background: radial-gradient(circle at 50% 30%, #1c1c1f 0%, #0b0b0c 75%); }
-.hero-content h1 { font-size: 3rem; font-weight: 700; max-width: 800px; margin-bottom: 1.5rem; }
-.hero-content p { color: var(--text-secondary); max-width: 600px; margin: 0 auto 2.5rem auto; }
-.hero-buttons { display: flex; justify-content: center; gap: 1rem; }
-.btn-primary, .btn-secondary { padding: 0.7rem 1.8rem; border-radius: 4px; text-decoration: none; font-weight: 500; }
-.btn-primary { background: #fff; color: #000; }
-.btn-secondary { border: 1px solid var(--card-border); color: #fff; }
+body { 
+    background-color: var(--bg-dark); 
+    color: var(--text-primary); 
+    line-height: 1.6; 
+    overflow-x: hidden; 
+}
 
-/* FORMS ONBOARDING */
-.profile-selector { display: flex; justify-content: center; gap: 1rem; margin-bottom: 2.5rem; }
-.profile-btn { background: transparent; border: 1px solid var(--card-border); color: var(--text-secondary); padding: 0.7rem 1.5rem; border-radius: 4px; cursor: pointer; }
-.profile-btn.active { background: rgba(255,255,255,0.05); color: #fff; border-color: rgba(255,255,255,0.3); }
-.form-container { max-width: 550px; margin: 0 auto; background: var(--bg-light); border: 1px solid var(--card-border); padding: 2.5rem; border-radius: 6px; }
-.onboarding-form { display: none; }
-.onboarding-form.active { display: block; }
-.form-group { margin-bottom: 1.2rem; }
-.form-group label { display: block; font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 0.4rem; }
-.form-group input, .form-group select, .form-group textarea { width: 100%; background: #1a1a1e; border: 1px solid var(--card-border); padding: 0.7rem; color: #fff; border-radius: 4px; outline: none; }
-.btn-submit { width: 100%; background: #fff; color: #000; border: none; padding: 0.8rem; border-radius: 4px; font-weight: 600; cursor: pointer; margin-top: 0.5rem; }
+.container { 
+    width: 100%; 
+    max-width: 1200px; 
+    margin: 0 auto; 
+    padding: 0 2rem; 
+}
 
-/* VITRINE SITES */
-.sites-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
-.site-card { background: #1a1a1e; border: 1px solid var(--card-border); border-radius: 6px; overflow: hidden; }
-.site-preview-thumb-psy { height: 120px; background: linear-gradient(135deg, #2b3a36, #1a2421); padding: 1rem; }
-.site-preview-thumb-eng { height: 120px; background: linear-gradient(135deg, #3a2d1f, #241c13); padding: 1rem; }
-.site-status-online { font-size: 0.7rem; background: rgba(0, 255, 102, 0.1); color: var(--accent-green); padding: 0.2rem 0.5rem; border-radius: 10px; }
-.site-card-body { padding: 1.5rem; }
-.badge-nicho { font-size: 0.65rem; border: 1px solid var(--card-border); padding: 0.1rem 0.4rem; border-radius: 4px; color: var(--text-secondary); }
+.section-padding { 
+    padding: 100px 0; 
+}
 
-/* ==========================================
-   PAINEL INTERNO E DASHBOARD STRUCTURE
-   ========================================== */
-.dashboard-hidden { display: none !important; }
-#app-dashboard { display: flex; height: 100vh; width: 100vw; background: var(--bg-dark); position: fixed; top: 0; left: 0; z-index: 500; }
-.sidebar { width: 260px; background: var(--bg-light); border-right: 1px solid var(--card-border); display: flex; flex-direction: column; padding: 2rem 1rem; }
-.sidebar-logo { font-weight: 800; font-size: 1.2rem; letter-spacing: 1px; margin-bottom: 3rem; text-align: center; color: #fff; }
-.sidebar-menu { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
-.menu-item { padding: 0.8rem 1rem; color: var(--text-secondary); border-radius: 4px; cursor: pointer; font-size: 0.9rem; transition: all 0.2s; }
-.menu-item:hover, .menu-item.active { background: rgba(255,255,255,0.04); color: #fff; }
-.menu-item.logout { margin-top: auto; color: #ff453a; }
+.bg-light { 
+    background-color: var(--bg-light); 
+}
 
-.main-content { flex: 1; padding: 3rem; overflow-y: auto; background: var(--bg-dark); }
-.dashboard-section { display: none; }
-.dashboard-section.active { display: block; }
-.dash-header { margin-bottom: 2.5rem; }
-.dash-header h2 { font-size: 1.8rem; margin-bottom: 0.3rem; }
-.dash-header p { color: var(--text-secondary); font-size: 0.95rem; }
+.section-header { 
+    text-align: center; 
+    margin-bottom: 50px; 
+}
 
-/* GRID LAYOUT CONEXOES */
-.dash-grid-layout { display: grid; grid-template-columns: 1fr 1.2fr; gap: 2rem; }
-.dash-card { background: var(--bg-light); border: 1px solid var(--card-border); padding: 2rem; border-radius: 8px; }
-.dash-card h3 { font-size: 1.1rem; margin-bottom: 1.5rem; color: #fff; border-bottom: 1px solid rgba(255,255,255,0.05); padding-bottom: 0.5rem; }
-.feed-ativos { display: flex; flex-direction: column; gap: 1rem; max-height: 450px; overflow-y: auto; }
-.ativo-item-card { background: var(--bg-dark); border: 1px solid var(--card-border); padding: 1.2rem; border-radius: 6px; position: relative; }
-.tag-tipo { font-size: 0.65rem; font-weight: 600; padding: 0.2rem 0.5rem; border-radius: 4px; display: inline-block; margin-bottom: 0.5rem; }
-.empresa-tipo .tag-tipo { background: rgba(0, 122, 255, 0.1); color: var(--accent-blue); }
-.investidor-tipo .tag-tipo { background: rgba(0, 255, 102, 0.1); color: var(--accent-green); }
-.ativo-item-card h4 { margin-bottom: 0.3rem; }
-.ativo-item-card p { font-size: 0.85rem; color: var(--text-secondary); }
+.section-header h2 { 
+    font-size: 2.3rem; 
+    margin-bottom: 1rem; 
+}
 
-/* CHAT LAYOUT */
-.chat-container-layout { display: grid; grid-template-columns: 250px 1fr; background: var(--bg-light); border: 1px solid var(--card-border); height: 500px; border-radius: 8px; overflow: hidden; }
-.chat-sidebar { border-right: 1px solid var(--card-border); background: rgba(0,0,0,0.1); }
-.chat-user-item { padding: 1.2rem 1rem; border-bottom: 1px solid var(--card-border); cursor: pointer; }
-.chat-user-item.active { background: rgba(255,255,255,0.03); border-left: 3px solid #fff; }
-.chat-user-item strong { display: block; font-size: 0.85rem; }
-.chat-user-item small { color: var(--text-secondary); font-size: 0.75rem; }
-.chat-window { display: flex; flex-direction: column; height: 100%; background: var(--bg-dark); }
-.chat-messages-log { flex: 1; padding: 1.5rem; overflow-y: auto; display: flex; flex-direction: column; gap: 1rem; }
-.msg-box { max-width: 75%; padding: 0.8rem 1rem; border-radius: 6px; font-size: 0.85rem; line-height: 1.4; }
-.msg-box.received { background: var(--bg-light); align-self: flex-start; border: 1px solid var(--card-border); }
-.msg-box.sent { background: #fff; color: #000; align-self: flex-end; }
-.chat-input-bar { padding: 1rem; background: var(--bg-light); border-top: 1px solid var(--card-border); display: flex; gap: 0.8rem; }
-.chat-input-bar input { flex: 1; background: var(--bg-dark); border: 1px solid var(--card-border); padding: 0.6rem; color: #fff; border-radius: 4px; outline: none; }
-.chat-input-bar button { background: #fff; color: #000; border: none; padding: 0 1.2rem; border-radius: 4px; font-weight: 600; cursor: pointer; }
+.section-header p { 
+    color: var(--text-secondary); 
+}
 
-/* CURSOS LAYOUT */
-.cursos-grid-layout { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
-.curso-card { background: var(--bg-light); border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden; display: flex; flex-direction: column; }
-.curso-thumb { height: 130px; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; }
-.font-psicologia { background: linear-gradient(135deg, #142823, #2b4c42); color: #5cdba5; }
-.font-construcao { background: linear-gradient(135deg, #2d1f10, #543d26); color: #e5a96f; }
-.font-investimento { background: linear-gradient(135deg, #101f30, #223e5e); color: #6faee5; }
-.curso-body { padding: 1.5rem; flex: 1; display: flex; flex-direction: column; }
-.curso-body h3 { font-size: 1.1rem; margin-bottom: 0.6rem; line-height: 1.3; color: #fff; }
-.curso-body p { font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.5rem; flex: 1; }
-.curso-duracao { font-size: 0.75rem; color: var(--text-secondary); display: block; margin-bottom: 1rem; }
-.btn-assistir { background: transparent; border: 1px solid rgba(255,255,255,0.15); color: #fff; padding: 0.6rem; border-radius: 4px; cursor: pointer; font-weight: 500; transition: all 0.2s; }
-.btn-assistir:hover { background: #fff; color: #000; }
+/* ==========================================================================
+   AUTH SCREEN HERO & NAVBAR (PRESERVADOS)
+   ========================================================================== */
+#navbar { 
+    position: fixed; 
+    top: 0; 
+    width: 100%; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 1.5rem 4rem; 
+    background: rgba(11,11,12,0.8); 
+    backdrop-filter: blur(12px); 
+    border-bottom: 1px solid var(--card-border); 
+    z-index: 100; 
+}
+
+.logo-text { 
+    font-weight: 800; 
+    font-size: 1.3rem; 
+    letter-spacing: 2px; 
+}
+
+#navbar ul { 
+    display: flex; 
+    list-style: none; 
+    gap: 2rem; 
+    align-items: center; 
+}
+
+#navbar a { 
+    color: var(--text-secondary); 
+    text-decoration: none; 
+    font-size: 0.9rem; 
+}
+
+#navbar .btn-contato { 
+    background: #fff; 
+    color: #000; 
+    padding: 0.5rem 1rem; 
+    border-radius: 4px; 
+    font-weight: 600; 
+    cursor: pointer;
+}
+
+.hero { 
+    height: 75vh; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    text-align: center; 
+    background: radial-gradient(circle at 50% 30%, #1c1c1f 0%, #0b0b0c 75%); 
+}
+
+.hero-content h1 { 
+    font-size: 3rem; 
+    font-weight: 700; 
+    max-width: 800px; 
+    margin-bottom: 1.5rem; 
+}
+
+.hero-content p { 
+    color: var(--text-secondary); 
+    max-width: 600px; 
+    margin: 0 auto 2.5rem auto; 
+}
+
+.hero-buttons { 
+    display: flex; 
+    justify-content: center; 
+    gap: 1rem; 
+}
+
+.btn-primary, .btn-secondary { 
+    padding: 0.7rem 1.8rem; 
+    border-radius: 4px; 
+    text-decoration: none; 
+    font-weight: 500; 
+}
+
+.btn-primary { 
+    background: #fff; 
+    color: #000; 
+}
+
+.btn-secondary { 
+    border: 1px solid var(--card-border); 
+    color: #fff; 
+}
+
+/* ==========================================================================
+   FORMS ONBOARDING & 3 ABAS (PRESERVADOS & ADAPTADOS)
+   ========================================================================== */
+.profile-selector { 
+    display: flex; 
+    justify-content: center; 
+    gap: 1rem; 
+    margin-bottom: 2.5rem; 
+}
+
+.profile-btn { 
+    background: transparent; 
+    border: 1px solid var(--card-border); 
+    color: var(--text-secondary); 
+    padding: 0.7rem 1.5rem; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    transition: all 0.2s ease;
+}
+
+.profile-btn.active { 
+    background: rgba(255,255,255,0.05); 
+    color: #fff; 
+    border-color: rgba(255,255,255,0.3); 
+}
+
+.form-container { 
+    max-width: 550px; 
+    margin: 0 auto; 
+    background: var(--bg-light); 
+    border: 1px solid var(--card-border); 
+    padding: 2.5rem; 
+    border-radius: 6px; 
+}
+
+.onboarding-form { 
+    display: none; 
+}
+
+.onboarding-form.active { 
+    display: block; 
+}
+
+.form-group { 
+    margin-bottom: 1.2rem; 
+}
+
+.form-group label { 
+    display: block; 
+    font-size: 0.8rem; 
+    color: var(--text-secondary); 
+    margin-bottom: 0.4rem; 
+}
+
+.form-group input, .form-group select, .form-group textarea { 
+    width: 100%; 
+    background: #1a1a1e; 
+    border: 1px solid var(--card-border); 
+    padding: 0.7rem; 
+    color: #fff; 
+    border-radius: 4px; 
+    outline: none; 
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    border-color: rgba(255, 255, 255, 0.25);
+}
+
+.btn-submit { 
+    width: 100%; 
+    background: #fff; 
+    color: #000; 
+    border: none; 
+    padding: 0.8rem; 
+    border-radius: 4px; 
+    font-weight: 600; 
+    cursor: pointer; 
+    margin-top: 0.5rem; 
+    transition: background 0.2s;
+}
+
+.btn-submit:hover {
+    background: #e4e4e7;
+}
+
+/* ==========================================================================
+   NOVO: MODAIS PREMIUM (AUTENTICAÇÃO, ANTIFRAUDE E CASCATA DE NICHOS)
+   ========================================================================== */
+.konekta-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 5, 6, 0.85);
+    backdrop-filter: blur(16px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.modal-content {
+    background: var(--bg-light);
+    border: 1px solid var(--card-border);
+    padding: 3rem 2.5rem;
+    border-radius: 8px;
+    width: 100%;
+    max-width: 460px;
+    position: relative;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+.modal-content h3 {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.modal-content p {
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    text-align: center;
+    margin-bottom: 2rem;
+    line-height: 1.5;
+}
+
+.close-modal {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: #fff;
+}
+
+/* Mecanismo SSO Google */
+.btn-google-auth {
+    width: 100%;
+    padding: 0.75rem;
+    background: #ffffff;
+    color: #000000;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.btn-google-auth:hover {
+    background: #e4e4e7;
+}
+
+.auth-divider {
+    text-align: center;
+    margin: 1.8rem 0;
+    position: relative;
+}
+
+.auth-divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: var(--card-border);
+    z-index: 1;
+}
+
+.auth-divider span {
+    position: relative;
+    z-index: 2;
+    background: var(--bg-light);
+    padding: 0 15px;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+}
+
+.security-check {
+    max-width: 400px;
+    border: 1px solid rgba(0, 122, 255, 0.2);
+}
+
+/* ==========================================================================
+   VITRINE SITES (PRESERVADA)
+   ========================================================================== */
+.sites-grid { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 2rem; 
+}
+
+.site-card { 
+    background: #1a1a1e; 
+    border: 1px solid var(--card-border); 
+    border-radius: 6px; 
+    overflow: hidden; 
+}
+
+.site-preview-thumb-psy { 
+    height: 120px; 
+    background: linear-gradient(135deg, #2b3a36, #1a2421); 
+    padding: 1rem; 
+}
+
+.site-preview-thumb-eng { 
+    height: 120px; 
+    background: linear-gradient(135deg, #3a2d1f, #241c13); 
+    padding: 1rem; 
+}
+
+.site-status-online { 
+    font-size: 0.7rem; 
+    background: rgba(0, 255, 102, 0.1); 
+    color: var(--accent-green); 
+    padding: 0.2rem 0.5rem; 
+    border-radius: 10px; 
+}
+
+.site-card-body { 
+    padding: 1.5rem; 
+}
+
+.badge-nicho { 
+    font-size: 0.65rem; 
+    border: 1px solid var(--card-border); 
+    padding: 0.1rem 0.4rem; 
+    border-radius: 4px; 
+    color: var(--text-secondary); 
+}
+
+/* ==========================================================================
+   PAINEL INTERNO E DASHBOARD STRUCTURE (PRESERVADOS)
+   ========================================================================== */
+.dashboard-hidden { 
+    display: none !important; 
+}
+
+#app-dashboard { 
+    display: flex; 
+    height: 100vh; 
+    width: 100vw; 
+    background: var(--bg-dark); 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 500; 
+}
+
+.sidebar { 
+    width: 260px; 
+    background: var(--bg-light); 
+    border-right: 1px solid var(--card-border); 
+    display: flex; 
+    flex-direction: column; 
+    padding: 2rem 1rem; 
+}
+
+.sidebar-logo { 
+    font-weight: 800; 
+    font-size: 1.2rem; 
+    letter-spacing: 1px; 
+    margin-bottom: 3rem; 
+    text-align: center; 
+    color: #fff; 
+}
+
+.sidebar-menu { 
+    list-style: none; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 0.5rem; 
+}
+
+.menu-item { 
+    padding: 0.8rem 1rem; 
+    color: var(--text-secondary); 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-size: 0.9rem; 
+    transition: all 0.2s; 
+}
+
+.menu-item:hover, .menu-item.active { 
+    background: rgba(255,255,255,0.04); 
+    color: #fff; 
+}
+
+.menu-item.logout { 
+    margin-top: auto; 
+    color: #ff453a; 
+}
+
+.main-content { 
+    flex: 1; 
+    padding: 3rem; 
+    overflow-y: auto; 
+    background: var(--bg-dark); 
+}
+
+.dashboard-section { 
+    display: none; 
+}
+
+.dashboard-section.active { 
+    display: block; 
+}
+
+.dash-header { 
+    margin-bottom: 2.5rem; 
+}
+
+.dash-header h2 { 
+    font-size: 1.8rem; 
+    margin-bottom: 0.3rem; 
+}
+
+.dash-header p { 
+    color: var(--text-secondary); 
+    font-size: 0.95rem; 
+}
+
+/* ==========================================================================
+   GRID LAYOUT CONEXOES (PRESERVADO & ADAPTADO)
+   ========================================================================== */
+.dash-grid-layout { 
+    display: grid; 
+    grid-template-columns: 1fr 1.2fr; 
+    gap: 2rem; 
+}
+
+.dash-card { 
+    background: var(--bg-light); 
+    border: 1px solid var(--card-border); 
+    padding: 2rem; 
+    border-radius: 8px; 
+}
+
+.dash-card h3 { 
+    font-size: 1.1rem; 
+    margin-bottom: 1.5rem; 
+    color: #fff; 
+    border-bottom: 1px solid rgba(255,255,255,0.05); 
+    padding-bottom: 0.5rem; 
+}
+
+.feed-ativos { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+    max-height: 450px; 
+    overflow-y: auto; 
+}
+
+.ativo-item-card { 
+    background: var(--bg-dark); 
+    border: 1px solid var(--card-border); 
+    padding: 1.2rem; 
+    border-radius: 6px; 
+    position: relative; 
+}
+
+.tag-tipo { 
+    font-size: 0.65rem; 
+    font-weight: 600; 
+    padding: 0.2rem 0.5rem; 
+    border-radius: 4px; 
+    display: inline-block; 
+    margin-bottom: 0.5rem; 
+}
+
+.empresa-tipo .tag-tipo { 
+    background: rgba(0, 122, 255, 0.1); 
+    color: var(--accent-blue); 
+}
+
+.investidor-tipo .tag-tipo { 
+    background: rgba(0, 255, 102, 0.1); 
+    color: var(--accent-green); 
+}
+
+.ativo-item-card h4 { 
+    margin-bottom: 0.3rem; 
+}
+
+.ativo-item-card p { 
+    font-size: 0.85rem; 
+    color: var(--text-secondary); 
+    margin-bottom: 0.8rem;
+}
+
+/* Novo: Botão de Vínculo de Chat dentro do Mural */
+.btn-interessar-chat {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #fff;
+    padding: 0.5rem 0.8rem;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s;
+    width: 100%;
+}
+
+.btn-interessar-chat:hover {
+    background: #fff;
+    color: #000;
+}
+
+/* ==========================================================================
+   CHAT LAYOUT & UPLOAD DE ARQUIVOS (PRESERVADO & ADAPTADO)
+   ========================================================================== */
+.chat-container-layout { 
+    display: grid; 
+    grid-template-columns: 250px 1fr; 
+    background: var(--bg-light); 
+    border: 1px solid var(--card-border); 
+    height: 500px; 
+    border-radius: 8px; 
+    overflow: hidden; 
+}
+
+.chat-sidebar { 
+    border-right: 1px solid var(--card-border); 
+    background: rgba(0,0,0,0.1); 
+}
+
+.chat-user-item { 
+    padding: 1.2rem 1rem; 
+    border-bottom: 1px solid var(--card-border); 
+    cursor: pointer; 
+}
+
+.chat-user-item.active { 
+    background: rgba(255,255,255,0.03); 
+    border-left: 3px solid #fff; 
+}
+
+.chat-user-item strong { 
+    display: block; 
+    font-size: 0.85rem; 
+}
+
+.chat-user-item small { 
+    color: var(--text-secondary); 
+    font-size: 0.75rem; 
+}
+
+.chat-window { 
+    display: flex; 
+    flex-direction: column; 
+    height: 100%; 
+    background: var(--bg-dark); 
+}
+
+.chat-messages-log { 
+    flex: 1; 
+    padding: 1.5rem; 
+    overflow-y: auto; 
+    display: flex; 
+    flex-direction: column; 
+    gap: 1rem; 
+}
+
+.msg-box { 
+    max-width: 75%; 
+    padding: 0.8rem 1rem; 
+    border-radius: 6px; 
+    font-size: 0.85rem; 
+    line-height: 1.4; 
+}
+
+.msg-box.received { 
+    background: var(--bg-light); 
+    align-self: flex-start; 
+    border: 1px solid var(--card-border); 
+}
+
+.msg-box.sent { 
+    background: #fff; 
+    color: #000; 
+    align-self: flex-end; 
+}
+
+.chat-input-bar { 
+    padding: 1rem; 
+    background: var(--bg-light); 
+    border-top: 1px solid var(--card-border); 
+    display: flex; 
+    align-items: center;
+    gap: 0.8rem; 
+}
+
+.chat-input-bar input { 
+    flex: 1; 
+    background: var(--bg-dark); 
+    border: 1px solid var(--card-border); 
+    padding: 0.6rem; 
+    color: #fff; 
+    border-radius: 4px; 
+    outline: none; 
+}
+
+.chat-input-bar button { 
+    background: #fff; 
+    color: #000; 
+    border: none; 
+    padding: 0.6rem 1.2rem; 
+    border-radius: 4px; 
+    font-weight: 600; 
+    cursor: pointer; 
+}
+
+/* Novo: Botão de Clipe para Upload no Chat (📎) */
+.btn-upload-file {
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    cursor: pointer;
+    padding: 0 0.2rem;
+    transition: color 0.2s;
+    user-select: none;
+}
+
+.btn-upload-file:hover {
+    color: #fff;
+}
+
+/* ==========================================================================
+   CURSOS LAYOUT (PRESERVADO)
+   ========================================================================== */
+.cursos-grid-layout { 
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 1.5rem; 
+}
+
+.curso-card { 
+    background: var(--bg-light); 
+    border: 1px solid var(--card-border); 
+    border-radius: 8px; 
+    overflow: hidden; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.curso-thumb { 
+    height: 130px; 
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-weight: 700; 
+    font-size: 1rem; 
+    text-transform: uppercase; 
+    letter-spacing: 1px; 
+}
+
+.font-psicologia { 
+    background: linear-gradient(135deg, #142823, #2b4c42); 
+    color: #5cdba5; 
+}
+
+.font-construcao { 
+    background: linear-gradient(135deg, #2d1f10, #543d26); 
+    color: #e5a96f; 
+}
+
+.font-investimento { 
+    background: linear-gradient(135deg, #101f30, #223e5e); 
+    color: #6faee5; 
+}
+
+.curso-body { 
+    padding: 1.5rem; 
+    flex: 1; 
+    display: flex; 
+    flex-direction: column; 
+}
+
+.curso-body h3 { 
+    font-size: 1.1rem; 
+    margin-bottom: 0.6rem; 
+    line-height: 1.3; 
+    color: #fff; 
+}
+
+.curso-body p { 
+    font-size: 0.85rem; 
+    color: var(--text-secondary); 
+    margin-bottom: 1.5rem; 
+    flex: 1; 
+}
+
+.curso-duracao { 
+    font-size: 0.75rem; 
+    color: var(--text-secondary); 
+    display: block; 
+    margin-bottom: 1rem; 
+}
+
+.btn-assistir { 
+    background: transparent; 
+    border: 1px solid rgba(255,255,255,0.15); 
+    color: #fff; 
+    padding: 0.6rem; 
+    border-radius: 4px; 
+    cursor: pointer; 
+    font-weight: 500; 
+    transition: all 0.2s; 
+}
+
+.btn-assistir:hover { 
+    background: #fff; 
+    color: #000; 
+}
+
+/* ==========================================================================
+   NOVO: ATENDIMENTO / SUPORTE FLUTUANTE (WHATSAPP)
+   ========================================================================== */
+.floating-whatsapp-support {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    width: 56px;
+    height: 56px;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 8px 24px rgba(37, 211, 102, 0.3);
+    z-index: 999;
+    transition: transform 0.2s, background 0.2s;
+}
+
+.floating-whatsapp-support:hover {
+    transform: scale(1.08);
+    background: #20ba5a;
+}
+
+.floating-whatsapp-support img {
+    width: 28px;
+    height: 28px;
+}
+
+/* Helper Global de Ocultação Visual */
+.style-hidden { 
+    display: none !important; 
+}
